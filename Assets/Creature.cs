@@ -10,6 +10,7 @@ public class Creature : MonoBehaviour {
     private SpriteRenderer sr;
 
     void Start() {
+        
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 

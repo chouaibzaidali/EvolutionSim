@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CreatureManager : MonoBehaviour {
     int  idindex =0 ;
+    public int simspeed=1;
     public int MaxCreatureBeforeEvolving=70;
     public int currentDeaths = 0;
     public GameObject creaturePrefab;
@@ -16,6 +17,7 @@ public class CreatureManager : MonoBehaviour {
       instance=this;
     }
     void Start() {
+        Time.timeScale = simspeed;
         for (int i = 0; i < initialCount; i++) {
             SpawnRandomCreature();
         }
@@ -38,7 +40,7 @@ public class CreatureManager : MonoBehaviour {
             speed = Random.Range(0.5f, 2f),
             size = Random.Range(0.5f, 2f),
             vision = Random.Range(3f, 8f),
-            metabolism = Random.Range(0.01f, 0.05f),
+            metabolism = Random.Range(0.1f, 0.2f),
             brain = new NeuralNetwork(new int[] { 5, 6, 2 })
         };
     }
@@ -82,6 +84,7 @@ void Evolve()
     
     foreach (Creature c in allCreatures)
     {
+        if(c.energy>100)
         survivorDNA.Add(c.dna);
     }
 

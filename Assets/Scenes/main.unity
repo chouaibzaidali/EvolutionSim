@@ -806,7 +806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d0718fc27e21500840c8115d5ded94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxCreatureBeforeEvolving: 20
+  simspeed: 5
+  MaxCreatureBeforeEvolving: 50
   currentDeaths: 0
   creaturePrefab: {fileID: 3431356726951348365, guid: 3071d114e03e8762db5aaee968b9b5ac, type: 3}
   initialCount: 100
