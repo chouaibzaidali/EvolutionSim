@@ -2,10 +2,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CreatureManager : MonoBehaviour {
+    int  idindex =0 ;
+    public int MaxCreatureBeforeEvolving=70;
+    public int currentDeaths = 0;
     public GameObject creaturePrefab;
     public int initialCount = 100;
     public List<Creature> allCreatures = new();
-
+    public static CreatureManager instance;
+    public int CreaturesCount=0;
+    public List<Creature> survivors = new(); 
+    
+    void Awake(){
+      instance=this;
+    }
     void Start() {
         for (int i = 0; i < initialCount; i++) {
             SpawnRandomCreature();
@@ -19,6 +28,8 @@ public class CreatureManager : MonoBehaviour {
         GameObject obj = Instantiate(creaturePrefab, pos, Quaternion.identity);
         Creature c = obj.GetComponent<Creature>();
         c.Initialize(dna);
+        c.id=idindex;
+        idindex++;
         allCreatures.Add(c);
     }
 
@@ -40,4 +51,78 @@ public class CreatureManager : MonoBehaviour {
         }
         return Random.insideUnitCircle * 15f;
     }
+     public void RemoveCreature (int id){
+          Creature dead = allCreatures.Find(c => c.id == id);
+    if (dead != null)
+    {
+        // Save DNA if energy was high enough
+       // if (dead.energy >= 100)
+          //  survivors.Add(dead);
+
+        allCreatures.Remove(dead);
+        CreaturesCount = allCreatures.Count;
+        currentDeaths++;
+
+        // Check if all creatures in this wave are dead
+        if (currentDeaths >= MaxCreatureBeforeEvolving)
+        {
+            Evolve();
+        }
+    }
+
+     }
+
+
+
+void Evolve()
+{
+    Debug.Log("Evolving ......");
+
+    List<DNA> survivorDNA = new();
+    
+    foreach (Creature c in allCreatures)
+    {
+        survivorDNA.Add(c.dna);
+    }
+
+    Debug.Log("Survivor count: " + survivorDNA.Count);
+
+    // Cleanup old survivors
+    foreach (Creature c in allCreatures)
+    {
+        if (c != null)
+            Destroy(c.gameObject);
+    }
+
+    allCreatures.Clear();
+    survivors.Clear();
+    currentDeaths = 0;
+
+    // Reproduce new generation
+    for (int i = 0; i < 100; i++)
+    {
+        DNA childDNA;
+
+        if (survivorDNA.Count > 0)
+        {
+            DNA parent = survivorDNA[Random.Range(0, survivorDNA.Count)];
+            childDNA = parent.CloneAndMutate();
+        }
+        else
+        {
+            childDNA = RandomDNA(); // Fallback to random
+        }
+
+        Vector2 pos = GetSafeSpawnPosition();
+        GameObject obj = Instantiate(creaturePrefab, pos, Quaternion.identity);
+        Creature c = obj.GetComponent<Creature>();
+        c.Initialize(childDNA);
+        c.id = idindex++;
+        allCreatures.Add(c);
+    }
+
+    CreaturesCount = allCreatures.Count;
+}
+
+     
 }

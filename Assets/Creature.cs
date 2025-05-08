@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class Creature : MonoBehaviour {
+    public int id =00;
     public DNA dna;
     public float energy = 100f;
     public float age = 0f;
@@ -29,7 +30,7 @@ public class Creature : MonoBehaviour {
 
         Move(outputs);
         TryEat();
-        TryReproduce();
+       // TryReproduce();
 
         energy -= dna.metabolism * Time.deltaTime * 0.5f;
         age += Time.deltaTime;
@@ -73,7 +74,7 @@ foreach (var dir in directions) {
         Vector2 direction = new Vector2(outputs[0], outputs[1]).normalized;
         rb.linearVelocity = direction * dna.speed;
     }
-
+   
     void TryEat() {
         Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, 0.5f);
         foreach (var col in nearby) {
@@ -98,6 +99,8 @@ foreach (var dir in directions) {
     }
 
     public void Die() {
+        CreatureManager.instance.RemoveCreature(id);
+       // Debug.Log("deleted" + id);
         Destroy(gameObject);
     }
 

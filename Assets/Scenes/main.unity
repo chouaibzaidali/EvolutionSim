@@ -246,12 +246,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194727743}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.04, y: 0.11, z: 0}
-  m_LocalScale: {x: 0.5897868, y: 22.752956, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -53.1, y: -7.3365, z: 0.3951096}
+  m_LocalScale: {x: -0.67133397, y: 39.93847, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1096513176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -359,7 +359,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 11.22
+  orthographic size: 19.9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -601,11 +601,46 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849016831}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2702, y: 11.28, z: 0}
-  m_LocalScale: {x: 43.898674, y: 0.46151668, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.6347, y: 12.0181, z: 0.3951096}
+  m_LocalScale: {x: 73.246574, y: 0.8253761, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 1096513176}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1096513175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1096513176}
+  m_Layer: 0
+  m_Name: cad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1096513176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096513175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.456606, y: 7.401416, z: -0.3951096}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2115461679}
+  - {fileID: 194727746}
+  - {fileID: 1962426767}
+  - {fileID: 849016834}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1962426764
@@ -735,12 +770,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962426764}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2702, y: -11.34, z: 0}
-  m_LocalScale: {x: 43.898674, y: 0.46151668, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.5691, y: -27.2, z: 0.3951096}
+  m_LocalScale: {x: 73.54069, y: 0.14619844, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1096513176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2010772866
 GameObject:
@@ -771,9 +806,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d0718fc27e21500840c8115d5ded94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxCreatureBeforeEvolving: 20
+  currentDeaths: 0
   creaturePrefab: {fileID: 3431356726951348365, guid: 3071d114e03e8762db5aaee968b9b5ac, type: 3}
   initialCount: 100
   allCreatures: []
+  CreaturesCount: 0
+  survivors: []
 --- !u!4 &2010772868
 Transform:
   m_ObjectHideFlags: 0
@@ -916,12 +955,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115461676}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 0.11, z: 0}
-  m_LocalScale: {x: 0.5897868, y: 22.752956, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 18.7, y: -6.8185, z: 0.3951096}
+  m_LocalScale: {x: 0.5897868, y: 41.35562, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1096513176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -930,7 +969,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 2010772868}
-  - {fileID: 849016834}
-  - {fileID: 1962426767}
-  - {fileID: 194727746}
-  - {fileID: 2115461679}
+  - {fileID: 1096513176}
