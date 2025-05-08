@@ -72,8 +72,15 @@ foreach (var dir in directions) {
     }
 
     void Move(float[] outputs) {
-        Vector2 direction = new Vector2(outputs[0], outputs[1]).normalized;
-        rb.linearVelocity = direction * dna.speed;
+           Vector2 moveDirection = new Vector2(outputs[0], outputs[1]).normalized;
+    float rotationInput = outputs.Length > 2 ? outputs[2] : 0f;
+
+    // Apply movement in the forward direction
+    rb.linearVelocity = transform.up * dna.speed * moveDirection.magnitude;
+
+    // Rotate creature based on neural output
+    float rotationSpeed = 200f; // You can tweak this value
+    transform.Rotate(Vector3.forward, -rotationInput * rotationSpeed * Time.deltaTime);
     }
    
     void TryEat() {
