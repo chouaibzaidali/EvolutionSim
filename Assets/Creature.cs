@@ -43,6 +43,8 @@ public class Creature : MonoBehaviour {
 
     float[] GetInputs() {
       float[] visionData = Sense();
+      float normalizedRotation = transform.eulerAngles.z / 360f;
+
 
     return new float[] {
         energy / 200f,
@@ -53,7 +55,8 @@ public class Creature : MonoBehaviour {
         dna.socialBehavior,
         dna.curiosity,
         dna.predationInstinct,
-        (float)dna.aggression / 2f // normalized: 0 (Passive), 0.5 (Neutral), 1 (Aggressive)
+        (float)dna.aggression / 2f ,
+          normalizedRotation // normalized: 0 (Passive), 0.5 (Neutral), 1 (Aggressive)
     };
     }
 
@@ -87,7 +90,7 @@ foreach (var dir in directions) {
     rb.linearVelocity = transform.up * dna.speed * moveDirection.magnitude;
 
     // Rotate creature based on neural output
-    float rotationSpeed = 200f; // You can tweak this value
+    float rotationSpeed = 50f; // You can tweak this value
     transform.Rotate(Vector3.forward, -rotationInput * rotationSpeed * Time.deltaTime);
     }
    

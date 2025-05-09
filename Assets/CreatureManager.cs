@@ -46,7 +46,7 @@ public class CreatureManager : MonoBehaviour {
         socialBehavior = Random.Range(0f, 1f),
         curiosity = Random.Range(0f, 1f),
         predationInstinct = Random.Range(0f, 1f),
-        brain = new NeuralNetwork(new int[] { 9, 10, 10, 3 }) // Updated to 9 inputs for new traits
+        brain = new NeuralNetwork(new int[] { 10, 10, 10, 3 }) // Updated to 9 inputs for new traits
     };
 }
 
@@ -90,7 +90,7 @@ void Evolve()
     
     foreach (Creature c in allCreatures)
     {
-        if(c.energy>99||c.dna.dietType==DietType.Herbivore)
+       // if(c.energy>99||c.dna.dietType==DietType.Herbivore)
         survivorDNA.Add(c.dna);
     }
 
