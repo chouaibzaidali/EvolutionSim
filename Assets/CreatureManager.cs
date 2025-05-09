@@ -36,14 +36,20 @@ public class CreatureManager : MonoBehaviour {
     }
 
     DNA RandomDNA() {
-        return new DNA {
-            speed = Random.Range(0.5f, 2f),
-            size = Random.Range(0.5f, 2f),
-            vision = Random.Range(3f, 8f),
-            metabolism = Random.Range(0.1f, 0.2f),
-            brain = new NeuralNetwork(new int[] { 6, 10,10, 3 })
-        };
-    }
+    return new DNA {
+        speed = Random.Range(0.5f, 2f),
+        size = Random.Range(0.5f, 2f),
+        vision = Random.Range(3f, 8f),
+        metabolism = Random.Range(0.1f, 0.2f),
+        dietType = (DietType)Random.Range(0, 3),
+        aggression = (AggressionLevel)Random.Range(0, 3),
+        socialBehavior = Random.Range(0f, 1f),
+        curiosity = Random.Range(0f, 1f),
+        predationInstinct = Random.Range(0f, 1f),
+        brain = new NeuralNetwork(new int[] { 9, 10, 10, 3 }) // Updated to 9 inputs for new traits
+    };
+}
+
 
     Vector2 GetSafeSpawnPosition(float radius = 0.5f, int maxTries = 20) {
         for (int i = 0; i < maxTries; i++) {
@@ -84,7 +90,7 @@ void Evolve()
     
     foreach (Creature c in allCreatures)
     {
-        if(c.energy>100)
+        if(c.energy>99||c.dna.dietType==DietType.Herbivore)
         survivorDNA.Add(c.dna);
     }
 

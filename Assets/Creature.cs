@@ -21,6 +21,7 @@ public class Creature : MonoBehaviour {
 
         transform.localScale = Vector3.one * dna.size;
         sr.color = ColorHelper.FromDNA(dna);
+        
     }
 
     void Update() {
@@ -32,25 +33,28 @@ public class Creature : MonoBehaviour {
         Move(outputs);
         TryEat();
        // TryReproduce();
-
+       // if(dna.dietType!=DietType.Herbivore)//for testing until beter way harbivors doesnt lose energie so they can survive untile soimething like grass is implemented
         energy -= dna.metabolism * Time.deltaTime * 0.5f;
         age += Time.deltaTime;
 
-        if (energy <= 0 || age > 100f)
+        if (energy <= 0 || age > 1000f)
             Die();
     }
 
     float[] GetInputs() {
-        float[] visionData = Sense();
-        Debug.Log("vision data:"+visionData.Length);
-        return new float[] {
-            energy / 200f,
-            age / 100f,
-            visionData[0], // sees target
-            visionData[1], // target energy
-            visionData[2]
-              // target size
-        };
+      float[] visionData = Sense();
+
+    return new float[] {
+        energy / 200f,
+        age / 100f,
+        visionData[0], // sees target
+        visionData[1], // target energy
+        visionData[2], // target size
+        dna.socialBehavior,
+        dna.curiosity,
+        dna.predationInstinct,
+        (float)dna.aggression / 2f // normalized: 0 (Passive), 0.5 (Neutral), 1 (Aggressive)
+    };
     }
 
     float[] Sense() {
@@ -87,17 +91,25 @@ foreach (var dir in directions) {
     transform.Rotate(Vector3.forward, -rotationInput * rotationSpeed * Time.deltaTime);
     }
    
-    void TryEat() {
-        Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-        foreach (var col in nearby) {
-            if (col.TryGetComponent(out Creature other) && other != this) {
-                if (this.dna.size > other.dna.size * 0.9f && this.energy > other.energy) {
-                    energy = Mathf.Min(energy + other.energy * 0.9f, 200f);
-                    other.Die();
-                }
+ void TryEat() {
+    Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+    foreach (var col in nearby) {
+        if (col.TryGetComponent(out Creature other) && other != this) {
+            // Don't eat same species or allies (example logic)
+            if (dna.dietType == DietType.Herbivore) continue;
+
+            bool canPredate = dna.dietType == DietType.Carnivore || dna.dietType == DietType.Omnivore;
+            bool isSmallerPrey = this.dna.size > other.dna.size * 0.9f;
+            bool isAggressiveEnough = dna.predationInstinct > 0.5f;
+
+            if (canPredate && isSmallerPrey && isAggressiveEnough) {
+                energy = Mathf.Min(energy + other.energy * 0.9f, 200f);
+                other.Die();
+                break;
             }
         }
     }
+}
 
     void TryReproduce() {
         if (energy > 180f) {
