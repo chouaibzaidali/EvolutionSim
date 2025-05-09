@@ -42,20 +42,24 @@ public class Creature : MonoBehaviour {
 
     float[] GetInputs() {
         float[] visionData = Sense();
+        Debug.Log("vision data:"+visionData.Length);
         return new float[] {
             energy / 200f,
             age / 100f,
             visionData[0], // sees target
             visionData[1], // target energy
-            visionData[2]  // target size
+            visionData[2]
+              // target size
         };
     }
 
     float[] Sense() {
       Vector2[] directions = {
     transform.up,
-    Quaternion.Euler(0, 0, 30) * transform.up,
-    Quaternion.Euler(0, 0, -30) * transform.up
+    Quaternion.Euler(0, 0, 90) * transform.up,
+    Quaternion.Euler(0, 0, -90) * transform.up,
+    Quaternion.Euler(0, 0, -180) *transform.up
+    
 };
 
 foreach (var dir in directions) {
