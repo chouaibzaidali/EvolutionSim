@@ -28,3 +28,16 @@ This simulation demonstrates the basic principles of:
 1. Clone the repository:
    ```bash
    git clone https://github.com/chouaibzaidali/EvolutionSim.git
+
+
+## 📜 License
+
+This project is licensed under the **[Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**.
+
+You are free to:
+- **Share** – Copy, distribute, and transmit the work.
+- **Adapt** – Remix, transform, and build upon the work.
+
+**Under the following conditions**:
+- **Attribution** – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
