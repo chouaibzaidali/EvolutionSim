@@ -807,7 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simspeed: 5
-  MaxCreatureBeforeEvolving: 50
+  MaxCreatureBeforeEvolving: 90
   currentDeaths: 0
   creaturePrefab: {fileID: 3431356726951348365, guid: 3071d114e03e8762db5aaee968b9b5ac, type: 3}
   initialCount: 100
