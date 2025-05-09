@@ -41,7 +41,7 @@ public class CreatureManager : MonoBehaviour {
             size = Random.Range(0.5f, 2f),
             vision = Random.Range(3f, 8f),
             metabolism = Random.Range(0.1f, 0.2f),
-            brain = new NeuralNetwork(new int[] { 5, 10, 3 })
+            brain = new NeuralNetwork(new int[] { 5, 10,10, 3 })
         };
     }
 
