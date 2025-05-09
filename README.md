@@ -1,4 +1,4 @@
-# EvolutionOrganismSim
+# Evosim
 
 A basic evolutionary organism simulation built in Unity. Creatures are spawned into a 2D environment, where they move, perceive, and consume energy. Over time, more successful creatures (based on energy levels) reproduce through a simple evolutionary algorithm.
 
